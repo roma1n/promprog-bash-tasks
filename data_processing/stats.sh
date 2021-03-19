@@ -1,8 +1,12 @@
 #!/bin/bash
 
-awk -v stat=$1 'BEGIN {
+awk -v stat=$1 -v input=$2 'BEGIN {
 	print "Stat: " stat
-	cmd = "cat titanic.csv"
+    print "Input: " input
+    if (input == "") {
+        input = "titanic.csv"
+    }
+	cmd = "cat " input
 	line_num = 0
 	n_bins = 10
 	if (stat == "survived")
